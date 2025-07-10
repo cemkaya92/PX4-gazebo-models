@@ -42,9 +42,9 @@
 {# maximum thruster rotational velocity (rad/s) #}
 {%- set mot_max_vel = mot_max_rpm*2*np.pi/60 -%}
 {# main thrusters time constant #}
-{%- set mot_tau = 0.001 -%}
+{%- set mot_tau = 0.0125 -%}
 {# simulation motor slowdown #}
-{%- set sim_rotor_slow = 5 -%}
+{%- set sim_rotor_slow = 10 -%}
 {# thruster prop radius (10") #}
 {%- set propeller_diameter = 2*radius_rotor -%} 
 {%- set propeller_pitch = 10*in2m -%} 
@@ -56,13 +56,13 @@
 {%- set motor_height = 0.15 -%}
 {%- set motor_depth = 0.15 -%}
 
-{%- set motor_constant = 1.28192e-08 -%}
-{%- set moment_constant = 5.964552e-03 -%}
+{%- set motor_constant = 1.5*8.78618e-08 -%}
+{%- set moment_constant = 5.964552e-3 -%}
 {%- set time_constant_up = 0.0125 -%}
 {%- set time_constant_down = 0.025 -%}
-{%- set max_rot_velocity = 2618 -%}
+{%- set max_rot_velocity = 1000 -%}
 {%- set rotor_drag_coefficient = 0*8.06428e-05 -%}
-{%- set rolling_moment_coefficient = 0.000001 -%}
+{%- set rolling_moment_coefficient = 0*1e-06 -%}
 
 {# =================================================== #}
 {# -------------- POSITIONS OF THE FRAMES ------------ #}
@@ -280,9 +280,13 @@
     <motorNumber>{{ motor_num }}</motorNumber>
     <rotorDragCoefficient>{{rotor_drag_coefficient}}</rotorDragCoefficient>
     <rollingMomentCoefficient>{{rolling_moment_coefficient}}</rollingMomentCoefficient>
-    <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+    <rotorVelocitySlowdownSim>{{sim_rotor_slow}}</rotorVelocitySlowdownSim>
     <motorType>velocity</motorType>
   </plugin>
+
+
+
+  
  
 {%- endmacro -%}
 

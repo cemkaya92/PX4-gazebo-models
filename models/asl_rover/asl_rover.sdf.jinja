@@ -39,7 +39,7 @@
 {%- set base_link_mass = 1.5 -%}
 {%- set wheel_housing_mass = 0.05 -%}
 {%- set bar_mass = 0.05 -%}
-{%- set wheel_mass = 0.05 -%}
+{%- set wheel_mass = 0.15 -%}
 
 {# =================================================== #}
 {# ------------------ MOTOR PROPERTIES --------------- #}
@@ -117,6 +117,12 @@
 {%- set ixx_motor = (1/2)*wheel_mass*( (propeller_radius)**2 )   -%}
 {%- set iyy_motor = (1/12)*wheel_mass*( 3*(propeller_radius)**2 )   -%}
 {%- set izz_motor = (1/12)*wheel_mass*( 3*(propeller_radius)**2 )   -%}
+{# --------------------------------------------------- #}
+{# ******************* BAR ASSY ******************** #}
+{# --------------------------------------------------- #}
+{%- set ixx_bar = (1/12)*bar_mass*( (bar_width)**2 + (bar_width)**2 )   -%}
+{%- set iyy_bar = (1/12)*bar_mass*( (bar_length)**2 + (bar_width)**2 )   -%}
+{%- set izz_bar = (1/12)*bar_mass*( (bar_width)**2 + (bar_length)**2 )   -%}
 
 {# =================================================== #}
 {# ------------- AERODYNAMIC PROPERTIES -------------- #}
@@ -202,8 +208,8 @@
     </limit>
     <dynamics>
       <spring_reference>0</spring_reference>
-      <spring_stiffness>1000</spring_stiffness>
-      <damping>1</damping>
+      <spring_stiffness>0</spring_stiffness>
+      <damping>0</damping>
     </dynamics>
     <use_parent_model_frame>1</use_parent_model_frame>
   </axis>
@@ -218,14 +224,14 @@
   
   <inertial>
         <pose>0 0 0 0 0 0</pose>
-        <mass>0.001</mass>
+        <mass>{{bar_mass}}</mass>
         <inertia>
-          <ixx>2.1733e-06</ixx>
+          <ixx>{{ixx_bar}}</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>2.1733e-06</iyy>
+          <iyy>{{iyy_bar}}</iyy>
           <iyz>0</iyz>
-          <izz>1.8e-07</izz>
+          <izz>{{izz_bar}}</izz>
         </inertia>
   </inertial>
   
@@ -236,18 +242,18 @@
     <pose relative_to='wheel{{num}}_bar_link'>0 -{{0.5*bar_horizontal_offset}} 0 0 0 0</pose>
   {% endif %}
     
-      <geometry>
-        <mesh>
-          <scale>1 1 1</scale>
-          <uri>model://asl_rover/meshes/bar.dae</uri>
-        </mesh>
-      </geometry>
-      <material>
-        <ambient>0.1 0.1 0.1 1</ambient>   <!-- Very dark gray for ambient lighting -->
-        <diffuse>0.2 0.2 0.2 1</diffuse>   <!-- Slightly lighter dark gray for diffuse color -->
-        <specular>0.6 0.6 0.6 1</specular> <!-- Medium specular to create a subtle shine -->
-        <emissive>0.0 0.0 0.0 1</emissive> <!-- No emissive, to avoid self-illumination -->
-      </material>
+    <geometry>
+      <mesh>
+        <scale>1 1 1</scale>
+        <uri>model://asl_rover/meshes/bar.dae</uri>
+      </mesh>
+    </geometry>
+    <material>
+      <ambient>0.4 0.4 0.45 1</ambient>     <!-- Brighter ambient -->
+      <diffuse>0.8 0.8 0.9 1</diffuse>      <!-- Very light, almost white silver -->
+      <specular>1.0 1.0 1.0 1</specular>    <!-- Strong white highlights for shine -->
+      <emissive>0.0 0.0 0.0 1</emissive>    <!-- No self-glow -->
+    </material>
   </visual>
 
   <visual name='wheel{{num}}_bar2_visual'>
@@ -257,18 +263,18 @@
     <pose relative_to='wheel{{num}}_bar_link'>0 {{0.5*bar_horizontal_offset}} 0 0 0 0</pose>
   {% endif %}
     
-      <geometry>
-        <mesh>
-          <scale>1 1 1</scale>
-          <uri>model://asl_rover/meshes/bar.dae</uri>
-        </mesh>
-      </geometry>
-      <material>
-        <ambient>0.1 0.1 0.1 1</ambient>   <!-- Very dark gray for ambient lighting -->
-        <diffuse>0.2 0.2 0.2 1</diffuse>   <!-- Slightly lighter dark gray for diffuse color -->
-        <specular>0.6 0.6 0.6 1</specular> <!-- Medium specular to create a subtle shine -->
-        <emissive>0.0 0.0 0.0 1</emissive> <!-- No emissive, to avoid self-illumination -->
-      </material>
+    <geometry>
+      <mesh>
+        <scale>1 1 1</scale>
+        <uri>model://asl_rover/meshes/bar.dae</uri>
+      </mesh>
+    </geometry>
+    <material>
+      <ambient>0.4 0.4 0.45 1</ambient>     <!-- Brighter ambient -->
+      <diffuse>0.8 0.8 0.9 1</diffuse>      <!-- Very light, almost white silver -->
+      <specular>1.0 1.0 1.0 1</specular>    <!-- Strong white highlights for shine -->
+      <emissive>0.0 0.0 0.0 1</emissive>    <!-- No self-glow -->
+    </material>
   </visual>
 
   <visual name='wheel{{num}}_bar3_visual'>
@@ -278,18 +284,18 @@
     <pose relative_to='wheel{{num}}_bar_link'>{{bar_vertical_offset*np.sin(bar_neutral_angle)}} -{{0.5*bar_horizontal_offset}} {{bar_vertical_offset*np.cos(bar_neutral_angle)}} 0 0 0</pose>
   {% endif %}
     
-      <geometry>
-        <mesh>
-          <scale>1 1 1</scale>
-          <uri>model://asl_rover/meshes/bar.dae</uri>
-        </mesh>
-      </geometry>
-      <material>
-        <ambient>0.1 0.1 0.1 1</ambient>   <!-- Very dark gray for ambient lighting -->
-        <diffuse>0.2 0.2 0.2 1</diffuse>   <!-- Slightly lighter dark gray for diffuse color -->
-        <specular>0.6 0.6 0.6 1</specular> <!-- Medium specular to create a subtle shine -->
-        <emissive>0.0 0.0 0.0 1</emissive> <!-- No emissive, to avoid self-illumination -->
-      </material>
+    <geometry>
+      <mesh>
+        <scale>1 1 1</scale>
+        <uri>model://asl_rover/meshes/bar.dae</uri>
+      </mesh>
+    </geometry>
+    <material>
+      <ambient>0.4 0.4 0.45 1</ambient>     <!-- Brighter ambient -->
+      <diffuse>0.8 0.8 0.9 1</diffuse>      <!-- Very light, almost white silver -->
+      <specular>1.0 1.0 1.0 1</specular>    <!-- Strong white highlights for shine -->
+      <emissive>0.0 0.0 0.0 1</emissive>    <!-- No self-glow -->
+    </material>
   </visual>
 
   <visual name='wheel{{num}}_bar4_visual'>
@@ -299,18 +305,18 @@
     <pose relative_to='wheel{{num}}_bar_link'>{{bar_vertical_offset*np.sin(bar_neutral_angle)}} {{0.5*bar_horizontal_offset}} {{bar_vertical_offset*np.cos(bar_neutral_angle)}} 0 0 0</pose>
   {% endif %}
     
-      <geometry>
-        <mesh>
-          <scale>1 1 1</scale>
-          <uri>model://asl_rover/meshes/bar.dae</uri>
-        </mesh>
-      </geometry>
-      <material>
-        <ambient>0.1 0.1 0.1 1</ambient>   <!-- Very dark gray for ambient lighting -->
-        <diffuse>0.2 0.2 0.2 1</diffuse>   <!-- Slightly lighter dark gray for diffuse color -->
-        <specular>0.6 0.6 0.6 1</specular> <!-- Medium specular to create a subtle shine -->
-        <emissive>0.0 0.0 0.0 1</emissive> <!-- No emissive, to avoid self-illumination -->
-      </material>
+    <geometry>
+      <mesh>
+        <scale>1 1 1</scale>
+        <uri>model://asl_rover/meshes/bar.dae</uri>
+      </mesh>
+    </geometry>
+    <material>
+      <ambient>0.4 0.4 0.45 1</ambient>     <!-- Brighter ambient -->
+      <diffuse>0.8 0.8 0.9 1</diffuse>      <!-- Very light, almost white silver -->
+      <specular>1.0 1.0 1.0 1</specular>    <!-- Strong white highlights for shine -->
+      <emissive>0.0 0.0 0.0 1</emissive>    <!-- No self-glow -->
+    </material>
   </visual>
 </link>
 
@@ -347,7 +353,7 @@
   
   <inertial>
         <pose>0 0 0 0 0 0</pose>
-        <mass>0.001</mass>
+        <mass>{{wheel_housing_mass}}</mass>
         <inertia>
           <ixx>2.1733e-06</ixx>
           <ixy>0</ixy>
@@ -365,18 +371,18 @@
     <pose>0 0 0 0 0 -{{90*np.pi/180}}</pose>
   {% endif %}
     
-      <geometry>
-        <mesh>
-          <scale>1 1 1</scale>
-          <uri>model://asl_rover/meshes/wheel_housing.dae</uri>
-        </mesh>
-      </geometry>
-      <material>
-        <ambient>0.1 0.1 0.1 1</ambient>   <!-- Very dark gray for ambient lighting -->
-        <diffuse>0.2 0.2 0.2 1</diffuse>   <!-- Slightly lighter dark gray for diffuse color -->
-        <specular>0.6 0.6 0.6 1</specular> <!-- Medium specular to create a subtle shine -->
-        <emissive>0.0 0.0 0.0 1</emissive> <!-- No emissive, to avoid self-illumination -->
-      </material>
+    <geometry>
+      <mesh>
+        <scale>1 1 1</scale>
+        <uri>model://asl_rover/meshes/wheel_housing.dae</uri>
+      </mesh>
+    </geometry>
+    <material>
+      <ambient>0.5 0.1 0.0 1</ambient>       <!-- Deep red-orange in shadows -->
+      <diffuse>1.0 0.2 0.0 1</diffuse>       <!-- Bright reddish-orange -->
+      <specular>0.8 0.3 0.2 1</specular>     <!-- Glossy highlights -->
+      <emissive>0.0 0.0 0.0 1</emissive>
+    </material>
   </visual>
 </link>
 
@@ -409,7 +415,7 @@
   <pose relative_to='wheel{{num}}_wheel_joint'>0 0 0 0 0 0</pose>
   <inertial>
         <pose>0 0 0 0 0 0</pose>
-        <mass>0.001</mass>
+        <mass>{{wheel_mass}}</mass>
         <inertia>
           <ixx>2.1733e-06</ixx>
           <ixy>0</ixy>
@@ -425,12 +431,12 @@
 
       {{cylinder(wheel_radius, wheel_width)}}
 
-      <material>
-        <ambient>0.1 0.1 0.1 1</ambient>   <!-- Very dark gray for ambient lighting -->
-        <diffuse>0.2 0.2 0.2 1</diffuse>   <!-- Slightly lighter dark gray for diffuse color -->
-        <specular>0.6 0.6 0.6 1</specular> <!-- Medium specular to create a subtle shine -->
-        <emissive>0.0 0.0 0.0 1</emissive> <!-- No emissive, to avoid self-illumination -->
-      </material>
+    <material>
+      <ambient>0.5 0.1 0.0 1</ambient>       <!-- Deep red-orange in shadows -->
+      <diffuse>1.0 0.2 0.0 1</diffuse>       <!-- Bright reddish-orange -->
+      <specular>0.8 0.3 0.2 1</specular>     <!-- Glossy highlights -->
+      <emissive>0.0 0.0 0.0 1</emissive>
+    </material>
   </visual>
 
   <collision name='wheel{{num}}_link_collision'>
@@ -474,9 +480,9 @@
   <sub_topic>command/motor_speed</sub_topic>
   <use_actuator_msg>true</use_actuator_msg>
 {% if side == "left" %}
-  <actuator_number>0</actuator_number>
-{% elif side == "right" %}
   <actuator_number>1</actuator_number>
+{% elif side == "right" %}
+  <actuator_number>0</actuator_number>
 {% endif %}
   <p_gain>10.0</p_gain>
 </plugin>
@@ -529,10 +535,10 @@
           </mesh>
         </geometry>
         <material>
-          <ambient>0.1 0.1 0.1 1</ambient>   <!-- Very dark gray for ambient lighting -->
-          <diffuse>0.2 0.2 0.2 1</diffuse>   <!-- Slightly lighter dark gray for diffuse color -->
-          <specular>0.6 0.6 0.6 1</specular> <!-- Medium specular to create a subtle shine -->
-          <emissive>0.0 0.0 0.0 1</emissive> <!-- No emissive, to avoid self-illumination -->
+          <ambient>0.4 0.4 0.45 1</ambient>     <!-- Brighter ambient -->
+          <diffuse>0.8 0.8 0.9 1</diffuse>      <!-- Very light, almost white silver -->
+          <specular>1.0 1.0 1.0 1</specular>    <!-- Strong white highlights for shine -->
+          <emissive>0.0 0.0 0.0 1</emissive>    <!-- No self-glow -->
         </material>
       </visual>
       <gravity>1</gravity>

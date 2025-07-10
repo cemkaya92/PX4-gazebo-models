@@ -267,8 +267,8 @@
   <jointName>rotor_0_joint</jointName>
   <linkName>rotor_0</linkName>
   <turningDirection>ccw</turningDirection>
-  <timeConstantUp>0.001</timeConstantUp>
-  <timeConstantDown>0.001</timeConstantDown>
+  <timeConstantUp>0.0125</timeConstantUp>
+  <timeConstantDown>0.0125</timeConstantDown>
   <maxRotVelocity>1047.1975511965977</maxRotVelocity>
   <propellerDiameter>0.045</propellerDiameter>
   <propellerPitch>0.254</propellerPitch>
@@ -276,7 +276,7 @@
   <commandSubTopic>command/motor_speed</commandSubTopic>
   <motorNumber>0</motorNumber>
   <rotorDragCoefficient>0</rotorDragCoefficient>
-  <rotorVelocitySlowdownSim>5</rotorVelocitySlowdownSim>
+  <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
   <motorType>velocity</motorType>
 </plugin>
 
@@ -287,13 +287,13 @@
     <turningDirection>ccw</turningDirection>
     <timeConstantUp>0.0125</timeConstantUp>
     <timeConstantDown>0.025</timeConstantDown>
-    <maxRotVelocity>2618</maxRotVelocity>
-    <motorConstant>1.28192e-08</motorConstant>
+    <maxRotVelocity>1000</maxRotVelocity>
+    <motorConstant>1.317927e-07</motorConstant>
     <momentConstant>0.005964552</momentConstant>
     <commandSubTopic>command/motor_speed</commandSubTopic>
     <motorNumber>0</motorNumber>
     <rotorDragCoefficient>0.0</rotorDragCoefficient>
-    <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+    <rollingMomentCoefficient>0.0</rollingMomentCoefficient>
     <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
     <motorType>velocity</motorType>
   </plugin>
@@ -305,13 +305,13 @@
     <turningDirection>ccw</turningDirection>
     <timeConstantUp>0.0125</timeConstantUp>
     <timeConstantDown>0.025</timeConstantDown>
-    <maxRotVelocity>2618</maxRotVelocity>
-    <motorConstant>1.28192e-08</motorConstant>
+    <maxRotVelocity>1000</maxRotVelocity>
+    <motorConstant>1.317927e-07</motorConstant>
     <momentConstant>0.005964552</momentConstant>
     <commandSubTopic>command/motor_speed</commandSubTopic>
     <motorNumber>0</motorNumber>
     <rotorDragCoefficient>0.0</rotorDragCoefficient>
-    <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+    <rollingMomentCoefficient>0.0</rollingMomentCoefficient>
     <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
     <motorType>velocity</motorType>
   </plugin>
@@ -378,8 +378,8 @@
   <jointName>rotor_1_joint</jointName>
   <linkName>rotor_1</linkName>
   <turningDirection>cw</turningDirection>
-  <timeConstantUp>0.001</timeConstantUp>
-  <timeConstantDown>0.001</timeConstantDown>
+  <timeConstantUp>0.0125</timeConstantUp>
+  <timeConstantDown>0.0125</timeConstantDown>
   <maxRotVelocity>1047.1975511965977</maxRotVelocity>
   <propellerDiameter>0.045</propellerDiameter>
   <propellerPitch>0.254</propellerPitch>
@@ -387,7 +387,7 @@
   <commandSubTopic>command/motor_speed</commandSubTopic>
   <motorNumber>1</motorNumber>
   <rotorDragCoefficient>0</rotorDragCoefficient>
-  <rotorVelocitySlowdownSim>5</rotorVelocitySlowdownSim>
+  <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
   <motorType>velocity</motorType>
 </plugin>
 
@@ -398,13 +398,13 @@
     <turningDirection>cw</turningDirection>
     <timeConstantUp>0.0125</timeConstantUp>
     <timeConstantDown>0.025</timeConstantDown>
-    <maxRotVelocity>2618</maxRotVelocity>
-    <motorConstant>1.28192e-08</motorConstant>
+    <maxRotVelocity>1000</maxRotVelocity>
+    <motorConstant>1.317927e-07</motorConstant>
     <momentConstant>0.005964552</momentConstant>
     <commandSubTopic>command/motor_speed</commandSubTopic>
     <motorNumber>1</motorNumber>
     <rotorDragCoefficient>0.0</rotorDragCoefficient>
-    <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+    <rollingMomentCoefficient>0.0</rollingMomentCoefficient>
     <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
     <motorType>velocity</motorType>
   </plugin>
@@ -416,13 +416,13 @@
     <turningDirection>cw</turningDirection>
     <timeConstantUp>0.0125</timeConstantUp>
     <timeConstantDown>0.025</timeConstantDown>
-    <maxRotVelocity>2618</maxRotVelocity>
-    <motorConstant>1.28192e-08</motorConstant>
+    <maxRotVelocity>1000</maxRotVelocity>
+    <motorConstant>1.317927e-07</motorConstant>
     <momentConstant>0.005964552</momentConstant>
     <commandSubTopic>command/motor_speed</commandSubTopic>
     <motorNumber>1</motorNumber>
     <rotorDragCoefficient>0.0</rotorDragCoefficient>
-    <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+    <rollingMomentCoefficient>0.0</rollingMomentCoefficient>
     <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
     <motorType>velocity</motorType>
   </plugin>
@@ -489,8 +489,8 @@
   <jointName>rotor_2_joint</jointName>
   <linkName>rotor_2</linkName>
   <turningDirection>ccw</turningDirection>
-  <timeConstantUp>0.001</timeConstantUp>
-  <timeConstantDown>0.001</timeConstantDown>
+  <timeConstantUp>0.0125</timeConstantUp>
+  <timeConstantDown>0.0125</timeConstantDown>
   <maxRotVelocity>1047.1975511965977</maxRotVelocity>
   <propellerDiameter>0.045</propellerDiameter>
   <propellerPitch>0.254</propellerPitch>
@@ -498,7 +498,7 @@
   <commandSubTopic>command/motor_speed</commandSubTopic>
   <motorNumber>2</motorNumber>
   <rotorDragCoefficient>0</rotorDragCoefficient>
-  <rotorVelocitySlowdownSim>5</rotorVelocitySlowdownSim>
+  <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
   <motorType>velocity</motorType>
 </plugin>
 
@@ -509,13 +509,13 @@
     <turningDirection>ccw</turningDirection>
     <timeConstantUp>0.0125</timeConstantUp>
     <timeConstantDown>0.025</timeConstantDown>
-    <maxRotVelocity>2618</maxRotVelocity>
-    <motorConstant>1.28192e-08</motorConstant>
+    <maxRotVelocity>1000</maxRotVelocity>
+    <motorConstant>1.317927e-07</motorConstant>
     <momentConstant>0.005964552</momentConstant>
     <commandSubTopic>command/motor_speed</commandSubTopic>
     <motorNumber>2</motorNumber>
     <rotorDragCoefficient>0.0</rotorDragCoefficient>
-    <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+    <rollingMomentCoefficient>0.0</rollingMomentCoefficient>
     <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
     <motorType>velocity</motorType>
   </plugin>
@@ -527,13 +527,13 @@
     <turningDirection>ccw</turningDirection>
     <timeConstantUp>0.0125</timeConstantUp>
     <timeConstantDown>0.025</timeConstantDown>
-    <maxRotVelocity>2618</maxRotVelocity>
-    <motorConstant>1.28192e-08</motorConstant>
+    <maxRotVelocity>1000</maxRotVelocity>
+    <motorConstant>1.317927e-07</motorConstant>
     <momentConstant>0.005964552</momentConstant>
     <commandSubTopic>command/motor_speed</commandSubTopic>
     <motorNumber>2</motorNumber>
     <rotorDragCoefficient>0.0</rotorDragCoefficient>
-    <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+    <rollingMomentCoefficient>0.0</rollingMomentCoefficient>
     <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
     <motorType>velocity</motorType>
   </plugin>
@@ -600,8 +600,8 @@
   <jointName>rotor_3_joint</jointName>
   <linkName>rotor_3</linkName>
   <turningDirection>cw</turningDirection>
-  <timeConstantUp>0.001</timeConstantUp>
-  <timeConstantDown>0.001</timeConstantDown>
+  <timeConstantUp>0.0125</timeConstantUp>
+  <timeConstantDown>0.0125</timeConstantDown>
   <maxRotVelocity>1047.1975511965977</maxRotVelocity>
   <propellerDiameter>0.045</propellerDiameter>
   <propellerPitch>0.254</propellerPitch>
@@ -609,7 +609,7 @@
   <commandSubTopic>command/motor_speed</commandSubTopic>
   <motorNumber>3</motorNumber>
   <rotorDragCoefficient>0</rotorDragCoefficient>
-  <rotorVelocitySlowdownSim>5</rotorVelocitySlowdownSim>
+  <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
   <motorType>velocity</motorType>
 </plugin>
 
@@ -620,13 +620,13 @@
     <turningDirection>cw</turningDirection>
     <timeConstantUp>0.0125</timeConstantUp>
     <timeConstantDown>0.025</timeConstantDown>
-    <maxRotVelocity>2618</maxRotVelocity>
-    <motorConstant>1.28192e-08</motorConstant>
+    <maxRotVelocity>1000</maxRotVelocity>
+    <motorConstant>1.317927e-07</motorConstant>
     <momentConstant>0.005964552</momentConstant>
     <commandSubTopic>command/motor_speed</commandSubTopic>
     <motorNumber>3</motorNumber>
     <rotorDragCoefficient>0.0</rotorDragCoefficient>
-    <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+    <rollingMomentCoefficient>0.0</rollingMomentCoefficient>
     <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
     <motorType>velocity</motorType>
   </plugin>
@@ -638,13 +638,13 @@
     <turningDirection>cw</turningDirection>
     <timeConstantUp>0.0125</timeConstantUp>
     <timeConstantDown>0.025</timeConstantDown>
-    <maxRotVelocity>2618</maxRotVelocity>
-    <motorConstant>1.28192e-08</motorConstant>
+    <maxRotVelocity>1000</maxRotVelocity>
+    <motorConstant>1.317927e-07</motorConstant>
     <momentConstant>0.005964552</momentConstant>
     <commandSubTopic>command/motor_speed</commandSubTopic>
     <motorNumber>3</motorNumber>
     <rotorDragCoefficient>0.0</rotorDragCoefficient>
-    <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+    <rollingMomentCoefficient>0.0</rollingMomentCoefficient>
     <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
     <motorType>velocity</motorType>
   </plugin>
