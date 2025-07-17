@@ -26,6 +26,9 @@
 {%- set wheel_width = 0.06 -%}
 {%- set wheel_housing_width = 0.055 -%}
 {%- set wheel_housing_vertical_offset = -0.0375 -%}
+{%- set landing_pad_length = 0.6 -%}
+{%- set landing_pad_width = 0.6 -%}
+{%- set landing_pad_height = 0.02 -%}
 
 {%- set bar_horizontal_offset = wheel_housing_width -%}
 {%- set bar_vertical_offset = 0.0265 -%}
@@ -40,6 +43,7 @@
 {%- set wheel_housing_mass = 0.05 -%}
 {%- set bar_mass = 0.05 -%}
 {%- set wheel_mass = 0.15 -%}
+{%- set landing_pad_mass = 0.40 -%}
 
 {# =================================================== #}
 {# ------------------ MOTOR PROPERTIES --------------- #}
@@ -105,24 +109,30 @@
 {# --------------------------------------------------- #}
 {# ****************** BASE ASSY ********************** #}
 {# --------------------------------------------------- #}
-{%- set ixx_frame = 0.035 -%}
-{%- set iyy_frame = 0.035 -%}
-{%- set izz_frame = 0.055 -%}
+{%- set ixx_frame = (1/12)*base_link_mass*( (base_width)**2 + (base_height)**2 )  -%}
+{%- set iyy_frame = (1/12)*base_link_mass*( (base_length)**2 + (base_height)**2 ) -%}
+{%- set izz_frame = (1/12)*base_link_mass*( (base_width)**2 + (base_length)**2 ) -%}
 {%- set ixy_frame = 0 -%}
 {%- set ixz_frame = 0 -%}
 {%- set iyz_frame = 0 -%}
 {# --------------------------------------------------- #}
 {# ******************* MOTOR ASSY ******************** #}
 {# --------------------------------------------------- #}
-{%- set ixx_motor = (1/2)*wheel_mass*( (propeller_radius)**2 )   -%}
-{%- set iyy_motor = (1/12)*wheel_mass*( 3*(propeller_radius)**2 )   -%}
-{%- set izz_motor = (1/12)*wheel_mass*( 3*(propeller_radius)**2 )   -%}
+{%- set ixx_wheel = (1/12)*wheel_mass*( 3*(wheel_radius)**2 + (wheel_width)**2 )   -%}
+{%- set iyy_wheel = (1/2)*wheel_mass*( (wheel_radius)**2 )   -%}
+{%- set izz_wheel = (1/12)*wheel_mass*( 3*(wheel_radius)**2 + (wheel_width)**2 )   -%}
 {# --------------------------------------------------- #}
 {# ******************* BAR ASSY ******************** #}
 {# --------------------------------------------------- #}
 {%- set ixx_bar = (1/12)*bar_mass*( (bar_width)**2 + (bar_width)**2 )   -%}
 {%- set iyy_bar = (1/12)*bar_mass*( (bar_length)**2 + (bar_width)**2 )   -%}
 {%- set izz_bar = (1/12)*bar_mass*( (bar_width)**2 + (bar_length)**2 )   -%}
+{# --------------------------------------------------- #}
+{# ******************* LANDING PAD ******************* #}
+{# --------------------------------------------------- #}
+{%- set ixx_landing_pad = (1/12)*landing_pad_mass*( (landing_pad_width)**2 + (landing_pad_height)**2 )   -%}
+{%- set iyy_landing_pad = (1/12)*landing_pad_mass*( (landing_pad_length)**2 + (landing_pad_height)**2 )   -%}
+{%- set izz_landing_pad = (1/12)*landing_pad_mass*( (landing_pad_width)**2 + (landing_pad_length)**2 )   -%}
 
 {# =================================================== #}
 {# ------------- AERODYNAMIC PROPERTIES -------------- #}
@@ -417,12 +427,12 @@
         <pose>0 0 0 0 0 0</pose>
         <mass>{{wheel_mass}}</mass>
         <inertia>
-          <ixx>2.1733e-06</ixx>
+          <ixx>{{ixx_wheel}}</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>2.1733e-06</iyy>
+          <iyy>{{iyy_wheel}}</iyy>
           <iyz>0</iyz>
-          <izz>1.8e-07</izz>
+          <izz>{{izz_wheel}}</izz>
         </inertia>
   </inertial>
   
@@ -459,7 +469,7 @@
 					</ode>
 					</friction>
 					<bounce>
-						<restitution_coefficient>0</restitution_coefficient>
+						<restitution_coefficient>0.01</restitution_coefficient>
 						<threshold>1e6</threshold>
 					</bounce>
 					<contact>
@@ -510,9 +520,9 @@
     <link name='base_link'>
       <pose>0 0 0 0 0 0</pose>
       {{ inertial(base_link_mass, ixx_frame, iyy_frame, izz_frame) |indent(6) }}
-      <collision name='base_link_top_collision'>
-        <pose>0 0 0.02 0 0 0</pose>
-        {{ box(0.5, 0.5, 0.01) }}
+      <collision name='base_link_landing_pad_collision'>
+        <pose>0 0 0.12 0 0 0</pose>
+        {{ box(landing_pad_length, landing_pad_width, landing_pad_height) }}
         <surface>
           <contact>
             <ode>
@@ -525,6 +535,31 @@
           </friction>
         </surface>
       </collision>
+
+      <visual name='base_link_landing_pad_visual'>
+        <pose>0 0 0.12 0 0 0</pose>
+        {{ box(landing_pad_length, landing_pad_width, landing_pad_height) }}
+        <surface>
+          <contact>
+            <ode>
+              <min_depth>0.001</min_depth>
+              <max_vel>0</max_vel>
+            </ode>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.4 0.4 0.4 1</specular>
+          <pbr>
+            <metal>
+              <albedo_map>model://arucotag/arucotag.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
+      </visual>
       
       <visual name='base_link_visual'>
         <pose>0 0 0 0 0 -{{np.pi/2}}</pose>
