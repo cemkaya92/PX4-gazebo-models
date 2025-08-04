@@ -562,7 +562,7 @@
       </visual>
       
       <visual name='base_link_visual'>
-        <pose>0 0 0 0 0 -{{np.pi/2}}</pose>
+        <pose>0 0 0 0 0 {{np.pi/2}}</pose>
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
@@ -693,6 +693,17 @@
 
     {{ suspension_wheel(3, "base_link", "right", x_bwd_right_motor, y_bwd_right_motor, z_bwd_right_motor, bar_neutral_angle, 0, 0) }}
     
+
+    <include merge='false'>
+      <uri>model://lidar_2d_v2</uri>
+      <pose relative_to="lidar_model_joint">0 0 0 0 0 0</pose>
+    </include>
+
+    <joint name="lidar_model_joint" type="fixed">
+      <parent>base_link</parent>
+      <child>lidar_2d_v2::link</child>
+      <pose relative_to="base_link">0.2 0 0.05 {{np.pi}} 0 0</pose>
+    </joint>
 
 
     <plugin
