@@ -695,14 +695,14 @@
     
 
     <include merge='false'>
-      <uri>model://lidar_2d_v2</uri>
+      <uri>model://rplidar_a2</uri>
       <pose relative_to="lidar_model_joint">0 0 0 0 0 0</pose>
     </include>
 
     <joint name="lidar_model_joint" type="fixed">
       <parent>base_link</parent>
-      <child>lidar_2d_v2::link</child>
-      <pose relative_to="base_link">0.2 0 0.05 {{np.pi}} 0 0</pose>
+      <child>rplidar_a2::link</child>
+      <pose relative_to="base_link">0.2 0 0.03 {{np.pi}} 0 {{np.pi}}</pose>
     </joint>
 
 
