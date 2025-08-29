@@ -11,7 +11,7 @@
     <joint name="CameraJoint" type="fixed">
       <parent>base_link</parent>
       <child>camera_link</child>
-      <pose relative_to="base_link">0.06 0.0 -0.03 0 0.7854 0</pose>
+      <pose relative_to="base_link">0.0 0.0 -0.03 0 1.5707 0</pose>
     </joint>
   </model>
 </sdf>
